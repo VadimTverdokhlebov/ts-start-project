@@ -1,8 +1,7 @@
 import express from 'express';
 import path from 'path';
 import config from './config';
-
-import { AppDataSource } from './persistence/data-source';
+import Typo from 'typo-js'
 
 function server() {
     try {
@@ -15,11 +14,10 @@ function server() {
         app.use(express.static(publicPath));
 
         app.listen(PORT, () => console.log(`Express HTTP server listening on http://${HOST}:${PORT}`));
+
     } catch (error) {
         console.error('Start server error:', error);
     }
 }
 
-AppDataSource.initialize()
-    .then(async () => server())
-    .catch((error: any) => console.log(error));
+server()
