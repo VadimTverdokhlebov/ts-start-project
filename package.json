@@ -1,5 +1,5 @@
 {
-  "name": "ts-start-project",
+  "name": "sharan_api",
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
@@ -29,10 +29,6 @@
     "typescript": "^5.4.3"
   },
   "dependencies": {
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "pg": "^8.11.5",
-    "reflect-metadata": "^0.2.2",
-    "typeorm": "^0.3.20"
+    "dotenv": "^16.4.5"
   }
 }
