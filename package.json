@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon --watch src --exec 'ts-node' src/index.ts",
     "start": "npm run build && npm run server",
-    "build": "rm -rf dist && tsc && cp -r src/public dist/public",
+    "build": "rm -rf dist && tsc",
     "server": "node dist/index.js",
     "lint": "eslint . --ext .ts",
     "lint:fix": "npm run lint -- --fix"

@@ -3,15 +3,15 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 interface IConfig {
-    APP_URL: string;
-    LOGIN: string;
-    PASSWORD: string;
+  appUrl: string;
+  login: string;
+  password: string;
 }
 
 const config: IConfig = {
-    APP_URL: process.env.APP_URL!,
-    LOGIN: process.env.LOGIN!,
-    PASSWORD: process.env.PASSWORD!,
+  appUrl: process.env.APP_URL!,
+  login: process.env.LOGIN!,
+  password: process.env.PASSWORD!
 };
 
 export default config;
