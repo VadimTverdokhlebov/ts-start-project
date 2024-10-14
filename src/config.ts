@@ -3,11 +3,11 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 interface IConfig {
-    databaseHost: string;
-    databasePort: number;
-    databaseUser: string;
-    databasePassword: string;
-    databaseName: string;
+    dbHost: string;
+    dbPort: number;
+    dbUser: string;
+    dbPassword: string;
+    dbName: string;
     serverPort: number;
     serverHost: string;
     user: {
@@ -16,11 +16,11 @@ interface IConfig {
 }
 
 const config: IConfig = {
-    databaseHost: process.env.DATABASE_HOST!,
-    databasePort: parseInt(process.env.DATABASE_PORT!, 10),
-    databaseUser: process.env.DATABASE_USER!,
-    databasePassword: process.env.DATABASE_PASSWORD!,
-    databaseName: process.env.DATABASE_NAME!,
+    dbHost: process.env.DB_HOST!,
+    dbPort: parseInt(process.env.DB_PORT!, 10),
+    dbUser: process.env.DB_USER!,
+    dbPassword: process.env.DB_PASSWORD!,
+    dbName: process.env.DB_NAME!,
     serverPort: parseInt(process.env.SERVER_PORT!, 10),
     serverHost: process.env.SERVER_HOST!,
     user: {
