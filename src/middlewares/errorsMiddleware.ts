@@ -1,19 +1,25 @@
-import ApiError from '../exception/ApiError.js';
-import ApiValidationError from '../exception/ApiValidationError.js';
-import logger from '../shared/logger.js';
+import { ErrorRequestHandler, NextFunction, Request, Response } from 'express';
+import ApiError from '../exception/ApiError';
+import ApiValidationError from '../exception/ApiValidationError';
+import logger from '../shared/logger';
 
-// eslint-disable-next-line no-unused-vars
-export default async function errorsMiddleware(err, req, res, next) {
-    if (err instanceof ApiError) {
-        logger.error({ message: err.message, errors: err.errors });
-        return res.status(err.status).json({ message: err.message, errors: err.errors });
-    }
+export default async function errorsMiddleware(
+  error: ErrorRequestHandler,
+  req: Request,
+  res: Response,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  next: NextFunction,
+) {
+  if (error instanceof ApiError) {
+    logger.error({ message: error.message, errors: error.errors });
+    return res.status(error.status).json({ message: error.message, errors: error.errors });
+  }
 
-    if (err instanceof ApiValidationError) {
-        logger.error({ message: err.message, errors: err.errors });
-        return res.status(400).json({ message: err.message, errors: err.errors });
-    }
+  if (error instanceof ApiValidationError) {
+    logger.error({ message: error.message, errors: error.errors });
+    return res.status(400).json({ message: error.message, errors: error.errors });
+  }
 
-    logger.error(err);
-    return res.status(500).json({ message: err.message });
+  logger.error(error);
+  return res.status(500).json({ message: 'Unexpected error' });
 }

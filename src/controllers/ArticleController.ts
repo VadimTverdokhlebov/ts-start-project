@@ -1,42 +1,54 @@
-import { createArticle, getArticle, getArticles, getUserArticles } from '../queries/article.js';
-import { checkUser } from '../queries/user.js';
+import { ErrorRequestHandler, NextFunction, Request, Response } from 'express';
+import { createArticle, getArticle, getArticles, getUserArticles } from '../persistence/queries/article';
+import { checkUser } from '../persistence/queries/user';
 export default class ArticleController {
-    static async createArticle(req, res, next) {
-        try {
-            const { content, category, title, tags, img, description } = req.body;
-            const email = req.user.email;
-            const user = await checkUser(email);
-            const result = await createArticle({ content, category: category, title, tags, img, description, author:user._id});
-            return res.json({ result });
-        } catch (err) {
-            next(err);
-        }
+  static async createArticle(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { content, category, title, tags, img, description }: any = req.body;
+      // const email = req.user.email;
+      // const user = await checkUser(email);
+      // const result = await createArticle({
+      //   content,
+      //   category: category,
+      //   title,
+      //   tags,
+      //   img,
+      //   description,
+      //   author: user.id
+      // });
+      return res.json();
+    } catch (err) {
+      next(err);
     }
-    static async getArticles(req, res, next) {
-        try {
-            const result = await getArticles();
-            return res.json({ result });
-        } catch (err) {
-            next(err);
-        }
+  }
+
+  static async getArticles(req: Request, res: Response, next: NextFunction) {
+    try {
+      const result = await getArticles();
+      return res.json();
+    } catch (err) {
+      next(err);
     }
-    static async getArticle(req, res, next) {
-        try {
-            const articleId = req.params.articleId;
-            const result = await getArticle(articleId);
-            return res.json({ result });
-        } catch (err) {
-            next(err);
-        }
+  }
+
+  static async getArticle(req: Request, res: Response, next: NextFunction) {
+    try {
+      const articleId= req.params.articleId;
+      const result = await getArticle(articleId);
+      return res.json();
+    } catch (err) {
+      next(err);
     }
-    static async getUserArticles(req, res, next) {
-        try {
-            const email = req.user.email;
-            const user = await checkUser(email);
-            const result = await getUserArticles(user._id);
-            return res.json({ result });
-        } catch (err) {
-            next(err);
-        }
+  }
+
+  static async getUserArticles(req: Request, res: Response, next: NextFunction) {
+    try {
+      // const email = req.user.email;
+      // const user = await checkUser(email);
+      // const result = await getUserArticles(user._id);
+      return res.json();
+    } catch (err) {
+      next(err);
     }
+  }
 }
